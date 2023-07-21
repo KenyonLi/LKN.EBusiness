@@ -12,8 +12,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace LKN.EBusiness.Migrations
 {
     [DbContext(typeof(EBusinessDbContext))]
-    [Migration("20230719104408_new_product_info")]
-    partial class new_product_info
+    [Migration("20230720085859_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,49 @@ namespace LKN.EBusiness.Migrations
             modelBuilder.Entity("LKN.EBusiness.Products.Product", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnType("longtext")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("LastModifierId");
+
                     b.Property<string>("ProductCode")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProductDescription")
@@ -39,7 +77,7 @@ namespace LKN.EBusiness.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("ProductPrice")
-                        .HasColumnType("decimal(65,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("ProductSold")
                         .HasColumnType("int");
@@ -63,18 +101,33 @@ namespace LKN.EBusiness.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("ProductVirtualprice")
-                        .HasColumnType("decimal(65,3)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppProducts", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("LKN.EBusiness.Products.ProductImage", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("DeletionTime");
 
                     b.Property<int>("ImageSort")
                         .HasColumnType("int");
@@ -87,6 +140,20 @@ namespace LKN.EBusiness.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("LastModifierId");
+
                     b.Property<Guid>("ProductId")
                         .HasColumnType("char(36)");
 
@@ -94,7 +161,7 @@ namespace LKN.EBusiness.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("AppProductImage", (string)null);
+                    b.ToTable("ProductImage");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

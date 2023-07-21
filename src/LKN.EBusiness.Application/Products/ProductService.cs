@@ -20,7 +20,7 @@ namespace LKN.EBusiness.Products
         public IProductRepository _productRepository; // 商品仓储
 
         public ProductManager _ProductManager; // 商品领域服务
-        protected IGuidGenerator GuidGenerator { get; set; }
+        protected IGuidGenerator GuidGenerator { get; set; } // guid 生成器
         protected IObjectMapper ObjectMapper { get; set; }
 
         public ProductService(IProductRepository ProductRepository, ProductManager productManager)
@@ -75,7 +75,7 @@ namespace LKN.EBusiness.Products
             });
 
             IMapper mapper = configuration.CreateMapper();
-
+            GuidGenerator.Create();
             Product product = mapper.Map<CreateProductDto, Product>(createProductDto);
 
             // 1、先查询商品

@@ -5,15 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volo.Abp.Domain.Entities.Auditing;
 
 namespace LKN.EBusiness.Products
 {
     /// <summary>
     /// 聚合根 来管理所有的聚合对象
     /// </summary>
-    public class Product
+    public class Product:FullAuditedAggregateRoot<Guid>
     {
-        public Guid Id { get; set; }         
+        //public Guid Id { get; set; }         
         /// <summary>
         /// 商品编码
         /// </summary>
@@ -21,15 +22,15 @@ namespace LKN.EBusiness.Products
         /// <summary>
         /// 商品主图
         /// </summary>
-        public string ProductUrl { get; set; }
+        public string? ProductUrl { get; set; }
         /// <summary>
         /// 商品标题
         /// </summary>
-        public string ProductTitle { get; set; }
+        public string? ProductTitle { get; set; }
         /// <summary>
         /// 图文描述
         /// </summary>
-        public string ProductDescription { get; set; }
+        public string? ProductDescription { get; set; }
 
         /// <summary>
         /// 商品虚拟价格
@@ -56,7 +57,7 @@ namespace LKN.EBusiness.Products
         /// <summary>
         /// 商品状态
         /// </summary>
-        public string ProductStatus { get; set; }
+        public string? ProductStatus { get; set; }
 
 
         public virtual ICollection<ProductImage> ProductImages { get; set; }

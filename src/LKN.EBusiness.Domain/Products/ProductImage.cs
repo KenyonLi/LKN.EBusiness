@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volo.Abp.Domain.Entities;
+using Volo.Abp.Domain.Entities.Auditing;
 
 namespace LKN.EBusiness.Products
 {
@@ -11,9 +13,9 @@ namespace LKN.EBusiness.Products
     /// <summary>
     /// 聚合对象
     /// </summary>
-    public class ProductImage
+    public class ProductImage: FullAuditedEntity<Guid>
     {
-        public Guid Id { get; set; }
+       // public Guid Id { get; set; }
         /// <summary>
         /// 商品编号 
         /// </summary>

@@ -82,13 +82,19 @@ public class EBusinessDbContext :
 
         /* Configure your own tables/entities inside here */
 
+        builder.Entity<Product>(b =>
+        {
+            b.ConfigureByConvention();
+            b.HasMany(u => u.ProductImages).WithOne().HasForeignKey(ur => ur.ProductId).IsRequired();
+        });
+
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(EBusinessConsts.DbTablePrefix + "YourEntities", EBusinessConsts.DbSchema);
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
-
+        /*
         builder.Entity<Product>(b => {
             b.ToTable(EBusinessConsts.DbTablePrefix+"Products",EBusinessConsts.DbSchema);
             b.ConfigureByConvention();
@@ -152,5 +158,6 @@ public class EBusinessDbContext :
 
             b.HasIndex("ProductId");
         });
+        */
     }
 }
