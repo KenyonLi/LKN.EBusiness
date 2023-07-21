@@ -22,15 +22,11 @@ namespace LKN.EBusiness.Products
         {
         }
 
-        public IEnumerable<Product> GetProductAndImage()
-        {
-            DbSet<Product> products = GetDbSetAsync().Result;
-            return products;
-        }
 
         public IEnumerable<Product> GetProductAndImages()
         {
-            throw new NotImplementedException();
+            DbSet<Product> products = GetDbSetAsync().Result;
+            return products;
         }
 
         /// <summary>

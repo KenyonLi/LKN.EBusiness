@@ -30,7 +30,7 @@ namespace LKN.EBusiness.Products
         public IEnumerable<ProductDto> GetProductByAttr(ProductAttrQueryDto createProductDto)
         {
             // 1、查询所有和图片
-            IEnumerable<Product> products = _productAbpRepository.GetProductAndImages();
+            IEnumerable<Product> products = _productAbpRepository.GetProductByName(createProductDto.productName);
 
             // 2、然后映射
             return ObjectMapper.Map<IEnumerable<Product>, List<ProductDto>>(products);

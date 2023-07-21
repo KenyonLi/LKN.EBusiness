@@ -9,7 +9,7 @@ namespace LKN.EBusiness.Products
 {
     public interface IProductAbpRepository: IRepository<Product,Guid>
     {
-        IEnumerable<Product> GetProductAndImage();
+        IEnumerable<Product> GetProductAndImages();
         IEnumerable<Product> GetProductByName(string productName);
     }
 }
