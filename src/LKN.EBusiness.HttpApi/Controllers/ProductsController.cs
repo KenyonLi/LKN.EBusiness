@@ -5,18 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 
 namespace LKN.EBusiness.Controllers
 {
     /// <summary>
     /// 商品服务控制器
+    /// 1、复用
+    /// 2、自定义
     /// </summary>
     [Route("Products")]
     [ApiController]
     public class ProductsController : AbpController
     {
         private readonly IProductService _productService;
+
+        public IProductAppService _ProductAppService { set; get; } // 直接用ABP框架提供的Service
 
         public ProductsController(IProductService productService)
         {
@@ -28,7 +33,10 @@ namespace LKN.EBusiness.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ProductDto>> GetProducts()
         {
-            return _productService.GetProducts().ToList();
+            //1、自己写的查询
+            // return _productService.GetProducts().ToList();
+            // 2、框架提供查询
+            return _ProductAppService.GetListAsync(new PagedAndSortedResultRequestDto()).Result.Items.ToList();
         }
 
         // GET: api/Products/5

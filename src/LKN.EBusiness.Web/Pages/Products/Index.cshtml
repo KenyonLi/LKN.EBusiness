@@ -1,0 +1,31 @@
+﻿
+@page
+@using LKN.EBusiness.Web.Pages.Products
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@model IndexModel
+@*@inject IStringLocalizer<EBusinessResource> L*@
+@inject IAuthorizationService AuthorizationService
+@section scripts
+{
+    <abp-script src="/Pages/Products/Index.js"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>"商品"</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                    <abp-button id="NewBookButton"
+                                text="添加"
+                                icon="plus"
+                                button-type="Primary"/>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="BooksTable"></abp-table>
+    </abp-card-body>
+</abp-card>

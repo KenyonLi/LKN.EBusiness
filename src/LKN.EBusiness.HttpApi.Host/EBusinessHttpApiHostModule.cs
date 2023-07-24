@@ -125,12 +125,18 @@ public class EBusinessHttpApiHostModule : AbpModule
             });
         }
     }
-
+    /// <summary>
+    /// 配置自动api 创建
+    /// </summary>
     private void ConfigureConventionalControllers()
     {
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
-            options.ConventionalControllers.Create(typeof(EBusinessApplicationModule).Assembly);
+            //创建应用层 接口的api
+            options.ConventionalControllers.Create(typeof(EBusinessApplicationModule).Assembly, options => {
+
+                options.RootPath = "EBusiness";
+            });
         });
     }
 

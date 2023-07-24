@@ -16,7 +16,7 @@ namespace LKN.EBusiness.Products
     /// 商品服务实现
     /// </summary>
     [Dependency(ServiceLifetime.Transient)]
-    public class ProductService : EBusinessAppService, IProductYService, IRemoteService
+    public class ProductWService : EBusinessAppService, IProductService, IRemoteService
     {
         public IProductRepository _productRepository; // 商品仓储
 
@@ -24,7 +24,7 @@ namespace LKN.EBusiness.Products
         protected IGuidGenerator GuidGenerator { get; set; } // guid 生成器
         protected IObjectMapper ObjectMapper { get; set; }
 
-        public ProductService(IProductRepository ProductRepository, ProductManager productManager)
+        public ProductWService(IProductRepository ProductRepository, ProductManager productManager)
         {
             this._productRepository = ProductRepository;
             this._ProductManager = productManager;
@@ -66,7 +66,7 @@ namespace LKN.EBusiness.Products
         /// 总结：根据逻辑是否复用而定。
         /// </summary>
         /// <param name="createProductDto"></param>
-        public void CreateProduct(CreateProductDto createProductDto)
+        public void Create(CreateProductDto createProductDto)
         {
             // 1、AutoMapper自动映射实体
             var configuration = new MapperConfiguration(cfg =>
@@ -97,7 +97,7 @@ namespace LKN.EBusiness.Products
             throw new NotImplementedException();
         }
 
-        public void DeleteProduct(DeleteProductDto deleteProductDto)
+        public void Delete(DeleteProductDto deleteProductDto)
         {
             throw new NotImplementedException();
         }
@@ -139,7 +139,7 @@ namespace LKN.EBusiness.Products
             throw new NotImplementedException();
         }
 
-        public void UpdateProduct(UpdateProductDto updateProductDto)
+        public void Update(UpdateProductDto updateProductDto)
         {
             throw new NotImplementedException();
         }
