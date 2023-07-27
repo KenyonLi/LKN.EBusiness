@@ -7,6 +7,9 @@ using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Http.Client;
+using Polly;
+using System;
 
 namespace LKN.EBusiness;
 
@@ -21,7 +24,19 @@ namespace LKN.EBusiness;
 )]
 public class EBusinessHttpApiClientModule : AbpModule
 {
-    public const string RemoteServiceName = "Default";
+    public const string RemoteServiceName = "EBusiness";
+
+    public override void PreConfigureServices(ServiceConfigurationContext context)
+    {
+        //重试
+        PreConfigure<AbpHttpClientBuilderOptions>(options => {
+            options.ProxyClientBuildActions.Add((remoteServiceName,clientBuilder) => {
+                clientBuilder.AddTransientHttpErrorPolicy(policyBuilder => {
+                   return policyBuilder.WaitAndRetryAsync(3, i => TimeSpan.FromSeconds(Math.Pow(2, 1)));
+                });
+            });
+        });   
+    }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

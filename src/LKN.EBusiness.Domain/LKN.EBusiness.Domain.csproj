@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="Pays\" />
     <Folder Include="Users\" />
+    <Folder Include="IdentityServer\" />
   </ItemGroup>
 
 </Project>

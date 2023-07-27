@@ -11,28 +11,25 @@ namespace LKN.EBusiness.Products
 {
 
     /// <summary>
-    /// 聚合对象
+    /// 商品图片
     /// </summary>
-    public class ProductImage: FullAuditedEntity<Guid>
+    public class ProductImage : FullAuditedEntity<Guid>
     {
-       // public Guid Id { get; set; }
-        /// <summary>
-        /// 商品编号 
-        /// </summary>
-        public Guid ProductId { get; set; }
-        /// <summary>
-        /// 排序
-        /// </summary>
-        public int ImageSort { get; set; }
+        //[Key]
+        // public Guid Id { set; get; } // 主键
+        public Guid ProductId { set; get; } // 商品编号
+        public int ImageSort { set; get; } // 排序
+        public string ImageStatus { set; get; } // 状态（1：启用，2：禁用）
+        public string ImageUrl { set; get; } // 图片url
 
-        /// <summary>
-        /// 状态 1：启用 2 禁用
-        /// </summary>
-        public  string ImageStatus { get; set; } 
 
-        /// <summary>
-        /// 图片url
-        /// </summary>
-        public string ImageUrl { get; set; }
+        public ProductImage()
+        {
+        }
+
+        public ProductImage(Guid id) : base(id)
+        {
+
+        }
     }
 }

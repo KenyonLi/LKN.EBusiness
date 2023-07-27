@@ -16,7 +16,7 @@ namespace LKN.EBusiness.Products
     /// 商品服务实现
     /// </summary>
     [Dependency(ServiceLifetime.Transient)]
-    public class ProductService : EBusinessAppService, IProductYService, IRemoteService
+    public class ProductService : IProductYService /* EBusinessAppService  IRemoteService  */
     {
         public IProductRepository _productRepository; // 商品仓储
 

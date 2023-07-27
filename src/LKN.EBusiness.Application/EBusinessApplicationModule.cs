@@ -1,4 +1,5 @@
 ﻿using Volo.Abp.Account;
+using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -14,6 +15,7 @@ namespace LKN.EBusiness;
     typeof(AbpAccountApplicationModule),
     typeof(EBusinessApplicationContractsModule),
     typeof(AbpIdentityApplicationModule),
+    typeof(AbpAutofacModule),
     typeof(AbpPermissionManagementApplicationModule),
     typeof(AbpTenantManagementApplicationModule),
     typeof(AbpFeatureManagementApplicationModule),

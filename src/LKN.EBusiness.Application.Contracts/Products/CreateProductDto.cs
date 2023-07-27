@@ -21,6 +21,12 @@ namespace LKN.EBusiness.Products
 
     public class ProductImageCreateDto
     {
+        public ProductImageCreateDto()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public Guid Id { set; get; } // Guid
         public string ImageUrl { set; get; } // 图片url
         public string ImageStatus { set; get; } // 图片状态
     }

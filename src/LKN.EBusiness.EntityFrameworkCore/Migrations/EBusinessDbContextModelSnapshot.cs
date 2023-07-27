@@ -21,6 +21,110 @@ namespace LKN.EBusiness.Migrations
                 .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("LKN.EBusiness.Orders.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("Createtime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnType("longtext")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<string>("OrderAddress")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OrderName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OrderRemark")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OrderSn")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OrderTel")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OrderTotalPrice")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OrderType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Paytime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Sendtime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Successtime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Updatetime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("LKN.EBusiness.Orders.OrderItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("ItemCount")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ItemPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("ItemTotalPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("OrderSn")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProductUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItem");
+                });
+
             modelBuilder.Entity("LKN.EBusiness.Products.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -70,34 +174,30 @@ namespace LKN.EBusiness.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProductDescription")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<decimal>("ProductPrice")
+                    b.Property<decimal?>("ProductPrice")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("ProductSold")
+                    b.Property<int?>("ProductSold")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductSort")
+                    b.Property<int?>("ProductSort")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductStatus")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ProductStock")
+                    b.Property<int?>("ProductStock")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductTitle")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProductUrl")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<decimal>("ProductVirtualprice")
+                    b.Property<decimal?>("ProductVirtualprice")
                         .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
@@ -1813,6 +1913,15 @@ namespace LKN.EBusiness.Migrations
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
                 });
 
+            modelBuilder.Entity("LKN.EBusiness.Orders.OrderItem", b =>
+                {
+                    b.HasOne("LKN.EBusiness.Orders.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LKN.EBusiness.Products.ProductImage", b =>
                 {
                     b.HasOne("LKN.EBusiness.Products.Product", null)
@@ -1962,6 +2071,11 @@ namespace LKN.EBusiness.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LKN.EBusiness.Orders.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("LKN.EBusiness.Products.Product", b =>

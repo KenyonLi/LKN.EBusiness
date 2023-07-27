@@ -1,4 +1,5 @@
-﻿using LKN.EBusiness.Products;
+﻿using LKN.EBusiness.Orders;
+using LKN.EBusiness.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -55,7 +56,7 @@ public class EBusinessDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
-
+    public DbSet<Order> Orders { get; set; } // 配置订单领域(以领域为单位)
 
     public DbSet<Product> Products { get; set; } // 配置商品(以领域为单位)
 

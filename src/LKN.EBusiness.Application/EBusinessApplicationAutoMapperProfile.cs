@@ -11,12 +11,17 @@ public class EBusinessApplicationAutoMapperProfile : Profile
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
+
+
         CreateMap<Product, ProductDto>();
         CreateMap<PagedAndSortedResultRequestDto, Product>();
         CreateMap<CreateProductDto, Product>();
         CreateMap<UpdateProductDto, Product>();
         CreateMap<ProductAttrQueryDto, Product>();
-        CreateMap<ProductImageDto, ProductImage>();
         CreateMap<ProductImage, ProductImageDto>();
+        CreateMap<ProductImageDto, ProductImage>();
+        CreateMap<ProductImageCreateDto, ProductImage>();
+
+
     }
 }

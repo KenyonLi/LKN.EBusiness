@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volo.Abp.Domain.Entities;
 
 namespace LKN.EBusiness.Orders
 {
-    public class Order
-    {
-        [Key]
-        public int Id { get; set; }
+    public class Order:AggregateRoot<Guid>
+     {    
         /// <summary>
         /// 订单类型
         /// </summary>
