@@ -12,6 +12,7 @@ using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
+using Volo.Abp.PermissionManagement;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
@@ -59,6 +60,8 @@ public class EBusinessDbContext :
     public DbSet<Order> Orders { get; set; } // 配置订单领域(以领域为单位)
 
     public DbSet<Product> Products { get; set; } // 配置商品(以领域为单位)
+
+    public DbSet<PermissionGrant> PermissionGrants { get; set; }
 
     public EBusinessDbContext(DbContextOptions<EBusinessDbContext> options)
         : base(options)

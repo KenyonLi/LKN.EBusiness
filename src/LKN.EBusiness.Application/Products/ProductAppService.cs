@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace LKN.EBusiness.Products
     /// 禁止 ABP 默认的生成的API接口，创建、添加、查询
     /// </summary>
     //[RemoteService(IsEnabled = false)]
-
+    [Authorize]
     public class ProductAppService : CrudAppService<
         Product,
         ProductDto, 

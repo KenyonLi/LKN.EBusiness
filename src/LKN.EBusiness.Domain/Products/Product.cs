@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.MultiTenancy;
 
 namespace LKN.EBusiness.Products
 {
@@ -47,7 +48,7 @@ namespace LKN.EBusiness.Products
     /// 2、增删除改查时间和人
     ///
     /// </summary>
-    public class Product : FullAuditedAggregateRoot<Guid>
+    public class Product : FullAuditedAggregateRoot<Guid>,IMultiTenant
     {
         // public Guid Id { set; get; } // 商品主键
         public string? ProductCode { set; get; }    //商品编码
@@ -83,6 +84,8 @@ namespace LKN.EBusiness.Products
         // 乐观锁的方式。
 
         public virtual ICollection<ProductImage> ProductImages { get; set; }
+
+        public Guid? TenantId { get; set; }
 
         public Product()
         {

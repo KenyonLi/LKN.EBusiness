@@ -197,7 +197,7 @@ public class EBusinessHttpApiHostModule : AbpModule
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCors();
-        app.UseAuthentication();
+        app.UseAuthentication(); 
         app.UseAbpOpenIddictValidation();
 
         if (MultiTenancyConsts.IsEnabled)
@@ -206,7 +206,7 @@ public class EBusinessHttpApiHostModule : AbpModule
         }
 
         app.UseUnitOfWork();
-        app.UseAuthorization();
+        app.UseAuthorization();//权限校验
 
         app.UseSwagger();
         app.UseAbpSwaggerUI(c =>
