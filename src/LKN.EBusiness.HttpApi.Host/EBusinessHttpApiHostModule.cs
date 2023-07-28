@@ -200,6 +200,7 @@ public class EBusinessHttpApiHostModule : AbpModule
         app.UseAuthentication(); 
         app.UseAbpOpenIddictValidation();
 
+        //ÃÌº”÷–º‰
         if (MultiTenancyConsts.IsEnabled)
         {
             app.UseMultiTenancy();
