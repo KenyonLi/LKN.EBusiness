@@ -575,7 +575,7 @@ namespace LKN.EBusiness.Migrations
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     OrderType = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     OrderSn = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     OrderTotalPrice = table.Column<string>(type: "longtext", nullable: false)
@@ -586,13 +586,13 @@ namespace LKN.EBusiness.Migrations
                     Sendtime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Successtime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
-                    OrderName = table.Column<string>(type: "longtext", nullable: true)
+                    OrderName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderTel = table.Column<string>(type: "longtext", nullable: true)
+                    OrderTel = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderAddress = table.Column<string>(type: "longtext", nullable: true)
+                    OrderAddress = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderRemark = table.Column<string>(type: "longtext", nullable: true)
+                    OrderRemark = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -625,6 +625,7 @@ namespace LKN.EBusiness.Migrations
                     ProductStock = table.Column<int>(type: "int", nullable: true),
                     ProductStatus = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)

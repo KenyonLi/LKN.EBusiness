@@ -3,9 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
 namespace LKN.EBusiness.Products
@@ -13,7 +10,7 @@ namespace LKN.EBusiness.Products
     /// <summary>
     /// 商品仓储实现
     /// </summary>
-    [Volo.Abp.DependencyInjection.Dependency(ServiceLifetime.Transient)]
+    [Dependency(ServiceLifetime.Transient)]
     public class ProductRepository : IProductRepository
     {
         public EBusinessDbContext _eBusinessDbContext;

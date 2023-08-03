@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LKN.EBusiness.Orders;
 using LKN.EBusiness.Products;
 using Volo.Abp.Application.Dtos;
 
@@ -22,6 +23,10 @@ public class EBusinessApplicationAutoMapperProfile : Profile
         CreateMap<ProductImageDto, ProductImage>();
         CreateMap<ProductImageCreateDto, ProductImage>();
 
-
+        CreateMap<CreateOrderDto, Order>();
+        CreateMap<CreateOrderItemDto, OrderItem>();
+        CreateMap<Order,OrderDto>();
+        CreateMap<OrderItem, OrderItemDto>();
+        CreateMap<UpdateOrderDto, Order>();
     }
 }

@@ -12,7 +12,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace LKN.EBusiness.Migrations
 {
     [DbContext(typeof(EBusinessDbContext))]
-    [Migration("20230727040718_Initial")]
+    [Migration("20230803110345_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -43,12 +43,15 @@ namespace LKN.EBusiness.Migrations
                         .HasColumnName("ExtraProperties");
 
                     b.Property<string>("OrderAddress")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("OrderName")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("OrderRemark")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("OrderSn")
@@ -59,6 +62,7 @@ namespace LKN.EBusiness.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("OrderTel")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("OrderTotalPrice")
@@ -81,8 +85,8 @@ namespace LKN.EBusiness.Migrations
                     b.Property<DateTime>("Updatetime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -202,6 +206,10 @@ namespace LKN.EBusiness.Migrations
 
                     b.Property<decimal?>("ProductVirtualprice")
                         .HasColumnType("decimal(65,30)");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("TenantId");
 
                     b.HasKey("Id");
 
@@ -1747,7 +1755,6 @@ namespace LKN.EBusiness.Migrations
             modelBuilder.Entity("Volo.Abp.PermissionManagement.PermissionGrant", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
