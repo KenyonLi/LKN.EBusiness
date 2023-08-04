@@ -3,6 +3,7 @@ using LKN.EBusiness.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
+using Volo.Abp.BackgroundJobs;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -15,6 +16,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
@@ -65,6 +67,12 @@ public class EBusinessDbContext :
 
     public DbSet<PermissionGrant> PermissionGrants { get; set; }
 
+
+    public DbSet<Setting> Settings { get; set; }
+
+    public DbSet<BackgroundJobRecord> BackgroundJobs { get; set; }
+
+
     public EBusinessDbContext(DbContextOptions<EBusinessDbContext> options)
         : base(options)
     {
@@ -100,70 +108,6 @@ public class EBusinessDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
-        /*
-        builder.Entity<Product>(b => {
-            b.ToTable(EBusinessConsts.DbTablePrefix+"Products",EBusinessConsts.DbSchema);
-            b.ConfigureByConvention();
-            b.Property<Guid>("Id")
-                       .ValueGeneratedOnAdd()
-                       .HasColumnType("char(36)");
-
-            b.Property<string>("ProductCode")
-                .HasColumnType("longtext");
-
-            b.Property<string>("ProductDescription")
-                .HasColumnType("longtext");
-
-            b.Property<decimal>("ProductPrice")
-                .HasColumnType("decimal(65,2)");
-
-            b.Property<int>("ProductSold")
-                .HasColumnType("int");
-
-            b.Property<int>("ProductSort")
-                .HasColumnType("int");
-
-            b.Property<string>("ProductStatus")
-              
-                .HasColumnType("longtext");
-
-            b.Property<int>("ProductStock")
-                .HasColumnType("int");
-
-            b.Property<string>("ProductTitle")
-                .HasColumnType("longtext");
-
-            b.Property<string>("ProductUrl")
-                .HasColumnType("longtext");
-
-            b.Property<decimal>("ProductVirtualprice")
-                .HasColumnType("decimal(65,3)");
-
-            b.HasKey("Id");
-        });
-        builder.Entity<ProductImage>(b =>{
-            b.ToTable(EBusinessConsts.DbTablePrefix + "ProductImage", EBusinessConsts.DbSchema);
-            b.ConfigureByConvention();
-            b.Property<Guid>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("char(36)");
-
-            b.Property<int>("ImageSort")
-                .HasColumnType("int");
-
-            b.Property<string>("ImageStatus")
-                .HasColumnType("longtext");
-
-            b.Property<string>("ImageUrl")
-                .HasColumnType("longtext");
-
-            b.Property<Guid>("ProductId")
-                .HasColumnType("char(36)");
-
-            b.HasKey("Id");
-
-            b.HasIndex("ProductId");
-        });
-        */
+        
     }
 }

@@ -32,7 +32,18 @@ public class EBusinessMenuContributor : IMenuContributor
                 icon: "fas fa-home",
                 order: 0
             )
+           
         );
+
+        context.Menu.Items.Insert(0,
+               new ApplicationMenuItem(
+                EBusinessMenus.Products,
+                l["Menu:Products"],
+                "~/Products/index",
+                icon: "fas fa-home",
+                order:1
+               )
+            );
 
         if (MultiTenancyConsts.IsEnabled)
         {

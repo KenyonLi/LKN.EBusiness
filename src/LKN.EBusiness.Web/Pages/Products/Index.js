@@ -7,7 +7,7 @@ $(function () {
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
             paging: true,
-            order: [[1, "asc"]],
+            order: [[l, "asc"]],
             searching: false,
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(ruanMou.projects.productServices.services.product.getList),

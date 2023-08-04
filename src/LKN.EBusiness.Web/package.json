@@ -3,6 +3,10 @@
   "name": "my-app",
   "private": true,
   "dependencies": {
-    "@abp/aspnetcore.mvc.ui.theme.leptonxlite": "~2.2.2"
+    "@abp/aspnetcore.mvc.ui.theme.leptonxlite": "~2.2.2",
+    "@abp/bootstrap": "^7.3.1",
+    "@abp/font-awesome": "^7.3.1",
+    "@abp/jquery": "^7.3.1",
+    "yarn": "^1.22.19"
   }
 }

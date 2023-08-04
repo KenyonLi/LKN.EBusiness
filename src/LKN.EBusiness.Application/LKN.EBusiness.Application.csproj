@@ -25,6 +25,11 @@
 
   <ItemGroup>
     <Folder Include="Orders\" />
+    <Folder Include="Validations\" />
+    <Folder Include="Features\" />
+    <Folder Include="Languages\" />
+    <Folder Include="MultiTenancys\" />
+    <Folder Include="Pays\" />
   </ItemGroup>
 
 </Project>

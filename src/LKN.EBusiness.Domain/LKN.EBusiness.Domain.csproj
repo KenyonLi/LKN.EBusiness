@@ -25,10 +25,4 @@
     <PackageReference Include="Volo.Abp.PermissionManagement.Domain.OpenIddict" Version="7.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pays\" />
-    <Folder Include="Users\" />
-    <Folder Include="IdentityServer\" />
-  </ItemGroup>
-
 </Project>
