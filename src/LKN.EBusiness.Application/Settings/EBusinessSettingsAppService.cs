@@ -55,10 +55,10 @@ namespace LKN.EBusiness.Settings
             #region 2、多租户获取设置
             {
                 EBusinessSettingsDto eBusinessSettingsDto = new EBusinessSettingsDto();
-                eBusinessSettingsDto.nativeUrl = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.NativeUrl, (Guid)CurrentTenant.Id);
-                eBusinessSettingsDto.mchid = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.Mchid, (Guid)CurrentTenant.Id);
-                eBusinessSettingsDto.certpath = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.Certpath, (Guid)CurrentTenant.Id);
-                eBusinessSettingsDto.certSerialNo = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.CertSerialNo, (Guid)CurrentTenant.Id);
+                eBusinessSettingsDto.nativeUrl = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.NativeUrl, (Guid)CurrentTenant.Id.GetValueOrDefault());
+                eBusinessSettingsDto.mchid = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.Mchid, (Guid)CurrentTenant.Id.GetValueOrDefault());
+                eBusinessSettingsDto.certpath = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.Certpath, (Guid)CurrentTenant.Id.GetValueOrDefault());
+                eBusinessSettingsDto.certSerialNo = await _settingManager.GetOrNullForTenantAsync(EBusinessSettings.WxPay.CertSerialNo, (Guid)CurrentTenant.Id.GetValueOrDefault());
 
                 return eBusinessSettingsDto;
             }
@@ -72,10 +72,10 @@ namespace LKN.EBusiness.Settings
         {
             #region 2、多租户设置
             {
-                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id, EBusinessSettings.WxPay.NativeUrl, input.nativeUrl);
-                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id, EBusinessSettings.WxPay.Mchid, input.mchid);
-                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id, EBusinessSettings.WxPay.Certpath, input.certpath);
-                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id, EBusinessSettings.WxPay.CertSerialNo, input.certSerialNo);
+                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id.GetValueOrDefault(), EBusinessSettings.WxPay.NativeUrl, input.nativeUrl);
+                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id.GetValueOrDefault(), EBusinessSettings.WxPay.Mchid, input.mchid);
+                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id.GetValueOrDefault(), EBusinessSettings.WxPay.Certpath, input.certpath);
+                await _settingManager.SetForTenantAsync((Guid)CurrentTenant.Id.GetValueOrDefault(), EBusinessSettings.WxPay.CertSerialNo, input.certSerialNo);
             }
             #endregion
 

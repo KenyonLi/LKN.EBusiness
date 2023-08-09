@@ -27,7 +27,7 @@ namespace LKN.EBusiness.Settings
 
         public static Task SetForUserNameAsync(this ISettingManager settingManager, string userName, [NotNull] string name, [CanBeNull] string value, bool forceToSet = false)
         {
-            return settingManager.SetAsync(name, value, UserNameSettingValueProvider.ProviderName, userName.ToString(), forceToSet);
+            return settingManager.SetAsync(name, value, UserNameSettingValueProvider.ProviderName, userName, forceToSet);
         }
 
     }

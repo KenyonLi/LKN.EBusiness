@@ -14,8 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Volo.Abp.Account.Application" Version="7.3.0" />
     <PackageReference Include="Volo.Abp.Autofac" Version="7.3.0" />
+    <PackageReference Include="Volo.Abp.Http" Version="7.3.0" />
+    <PackageReference Include="Volo.Abp.Http.Client" Version="7.3.0" />
     <PackageReference Include="Volo.Abp.Identity.Application" Version="7.3.0" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="7.3.0" />
     <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="7.3.0" />
@@ -25,11 +30,10 @@
 
   <ItemGroup>
     <Folder Include="Orders\" />
+    <Folder Include="Pays\certs\" />
     <Folder Include="Validations\" />
-    <Folder Include="Features\" />
-    <Folder Include="Languages\" />
     <Folder Include="MultiTenancys\" />
-    <Folder Include="Pays\" />
+    <Folder Include="Permissions\" />
   </ItemGroup>
 
 </Project>
