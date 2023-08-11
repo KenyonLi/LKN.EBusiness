@@ -14,7 +14,7 @@ namespace LKN.EBusiness.Pays
 
         private const string nativeUrl = "https://api.mch.weixin.qq.com/v3/pay/transactions/native";// 支付接口
         private const string mchid = "1613333188"; // 商户Id
-        private const string certpath = @"D:\work\net-project\ABP专题\4、核心项目-电商项目模块原理分析\YDT.EBusiness\src\YDT.EBusiness.Application\Pays\certs\apiclient_cert.p12"; // 商户证书路径
+        private const string certpath = @"D:\work\net-project\ABP专题\4、核心项目-电商项目模块原理分析\LKN.EBusiness\src\LKN.EBusiness.Application\Pays\certs\apiclient_cert.p12"; // 商户证书路径
         private const string certSerialNo = "6FC4BB506EC38075C5F4F160885ED655A0604DC6"; // 证书序列号
 
         protected WxPayOptions _wxPayOptions { get; }

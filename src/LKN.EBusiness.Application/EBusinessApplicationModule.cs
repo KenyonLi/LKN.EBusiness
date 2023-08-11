@@ -69,7 +69,7 @@ public class EBusinessApplicationModule : AbpModule
         Configure<WxPayOptions>(options => {
             options.nativeUrl = "https://api.mch.weixin.qq.com/v3/pay/transactions/native";
             options.mchid = "1613333188";
-            options.certpath = @"D:\work\net-project\ABP专题\4、核心项目-电商项目模块原理分析\YDT.EBusiness\src\YDT.EBusiness.Application\Pays\certs\apiclient_cert.p12";
+            options.certpath = @"D:\work\net-project\ABP专题\4、核心项目-电商项目模块原理分析\LKN.EBusiness\src\LKN.EBusiness.Application\Pays\certs\apiclient_cert.p12";
             options.certSerialNo = "6FC4BB506EC38075C5F4F160885ED655A0604DC6";
         });
 
