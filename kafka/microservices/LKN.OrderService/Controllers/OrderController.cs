@@ -355,73 +355,73 @@ namespace LKN.OrderService.Controllers
             // 场景：创建订单，也希望发送短信
             #region 8、创建订单----1、订单消息延迟处理
             {
-                new Task(() =>
-                {
-                    var consumerConfig = new ConsumerConfig
-                    {
-                        BootstrapServers = "127.0.0.1:9092",
-                        AutoOffsetReset = AutoOffsetReset.Earliest,
-                        GroupId = "order",
-                        EnableAutoCommit = false,
-                        FetchMinBytes=170,
-                        FetchMaxBytes=3060
-                    };
-                    var builder = new ConsumerBuilder<string, string>(consumerConfig);
-                    using (var consumer = builder.Build())
-                    {
-                        // 1、订阅
-                        consumer.Subscribe("create-order-1");
-                        // 2、偏移量恢复
-                        string offset = distributedCache.GetString("create-order-1");
-                        if (string.IsNullOrEmpty(offset))
-                        {
-                            offset = "0";
-                        }
-                        consumer.Assign(new TopicPartitionOffset(new TopicPartition("create-order-1", 0), int.Parse(offset)));
-                        while (true)
-                        {
-                            // 1、恢复消息
-                            new Timer((s) =>
-                            {
-                                consumer.Resume(new List<TopicPartition> { new TopicPartition("create-order-1", 0) });
-                            }, null, Timeout.Infinite, Timeout.Infinite).Change(5000, 5000);
+                //new Task(() =>
+                //{
+                //    var consumerConfig = new ConsumerConfig
+                //    {
+                //        BootstrapServers = "127.0.0.1:9092",
+                //        AutoOffsetReset = AutoOffsetReset.Earliest,
+                //        GroupId = "order",
+                //        EnableAutoCommit = false,
+                //        FetchMinBytes=170,
+                //        FetchMaxBytes=3060
+                //    };
+                //    var builder = new ConsumerBuilder<string, string>(consumerConfig);
+                //    using (var consumer = builder.Build())
+                //    {
+                //        // 1、订阅
+                //        consumer.Subscribe("create-order-1");
+                //        // 2、偏移量恢复
+                //        string offset = distributedCache.GetString("create-order-1");
+                //        if (string.IsNullOrEmpty(offset))
+                //        {
+                //            offset = "0";
+                //        }
+                //        consumer.Assign(new TopicPartitionOffset(new TopicPartition("create-order-1", 0), int.Parse(offset)));
+                //        while (true)
+                //        {
+                //            // 1、恢复消息
+                //            new Timer((s) =>
+                //            {
+                //                consumer.Resume(new List<TopicPartition> { new TopicPartition("create-order-1", 0) });
+                //            }, null, Timeout.Infinite, Timeout.Infinite).Change(5000, 5000);
 
-                            // 1.1、消费暂停
-                            consumer.Pause(new List<TopicPartition> { new TopicPartition("create-order-1", 0) });
+                //            // 1.1、消费暂停
+                //            consumer.Pause(new List<TopicPartition> { new TopicPartition("create-order-1", 0) });
 
-                            // 2、消费消息
-                            var result = consumer.Consume(); //批量获取消息，根据-----》字节数
-                            try
-                            {
-                                // 2.1、获取偏移量
-                                _logger.LogInformation($"订单消息偏移量：Offset:{result.Offset}");
+                //            // 2、消费消息
+                //            var result = consumer.Consume(); //批量获取消息，根据-----》字节数
+                //            try
+                //            {
+                //                // 2.1、获取偏移量
+                //                _logger.LogInformation($"订单消息偏移量：Offset:{result.Offset}");
 
-                                // 3、业务处理
-                                string key = result.Key;
-                                string value = result.Value;
-                                _logger.LogInformation($"创建商品：Key:{key}");
-                                _logger.LogInformation($"创建商品：Order:{value}");
+                //                // 3、业务处理
+                //                string key = result.Key;
+                //                string value = result.Value;
+                //                _logger.LogInformation($"创建商品：Key:{key}");
+                //                _logger.LogInformation($"创建商品：Order:{value}");
 
-                                // 2.2、把kafka队列中偏移量存起来。redis mysql
-                                // 2.3、重置kafka队列的偏移量
-                                distributedCache.SetString("create-order-1", result.Offset.Value.ToString());
+                //                // 2.2、把kafka队列中偏移量存起来。redis mysql
+                //                // 2.3、重置kafka队列的偏移量
+                //                distributedCache.SetString("create-order-1", result.Offset.Value.ToString());
 
-                                // 3、手动提交
-                                consumer.Commit(result);
-                            }
-                            catch (Exception)
-                            {
+                //                // 3、手动提交
+                //                consumer.Commit(result);
+                //            }
+                //            catch (Exception)
+                //            {
 
-                                throw;
-                            } finally
-                            {
-                                consumer.Pause(new List<TopicPartition> { new TopicPartition("create-order-1", 0) });
-                                Console.WriteLine($"暂停消费");
-                            }
-                        }
-                    }
+                //                throw;
+                //            } finally
+                //            {
+                //                consumer.Pause(new List<TopicPartition> { new TopicPartition("create-order-1", 0) });
+                //                Console.WriteLine($"暂停消费");
+                //            }
+                //        }
+                //    }
 
-                }).Start();
+                //}).Start();
             }
             #endregion
 
