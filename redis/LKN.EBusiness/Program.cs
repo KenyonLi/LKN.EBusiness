@@ -13,9 +13,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDistributedMemoryCache();
+string conneStr = builder.Configuration.GetSection("RedisConnStr:DefaultConnection").Value;
+//string conneStr = builder.Configuration.GetSection("RedisConnStr:ClusterConnection").Value;
 
-builder.Services.AddDistributedRedisCache(builder.Configuration.GetSection("RedisConnStr:DefaultConnection").Value);
- 
+builder.Services.AddDistributedRedisCache(conneStr);
+
 builder.Services.AddDbContext<ProductDbContext>(options => {
           options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion("8.0.32"));
       });

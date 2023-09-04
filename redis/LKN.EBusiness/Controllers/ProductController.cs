@@ -63,7 +63,7 @@ namespace LKN.EBusiness.Controllers
 
             #region 1、存储商品对象，一条商品数据
             {
-                /* // 1、从redis中取对象
+               /*// 1、从redis中取对象
                  string productjson = _connectionMultiplexer.GetDatabase(0).StringGet("product");
                  if (string.IsNullOrEmpty(productjson))
                  {
@@ -78,13 +78,14 @@ namespace LKN.EBusiness.Controllers
                  }
                  product = JsonConvert.DeserializeObject<Product>(productjson);//反序列化
 
-                 return product;*/
+                 return product;
+               */
             }
             #endregion
 
             #region 2、存储商品对象-集合商品数据
             {
-                /*// 1、从redis中取对象
+                // 1、从redis中取对象
                 RedisValue[] productvalues = _connectionMultiplexer.GetDatabase(0).SetMembers("products");
                 List<Product> products = new List<Product>();
                 if (productvalues.Length == 0)
@@ -102,16 +103,17 @@ namespace LKN.EBusiness.Controllers
 
                     _connectionMultiplexer.GetDatabase(0).SetAdd("products", redisValues.ToArray());
 
-                    return products;
+                    //return products;
                 }
-
+                /*
                 // 4、序列化，反序列化
                 foreach (var redisValue in productvalues)
                 {
                     product = JsonConvert.DeserializeObject<Product>(redisValue);//反序列化
                     products.Add(product);
                 }
-                return product;*/
+                return product;
+                */
             }
             #endregion
 
@@ -148,6 +150,7 @@ namespace LKN.EBusiness.Controllers
 
             #region 4、存储商品对象-字典形式
             {
+                /*
                 string ProductSold = _connectionMultiplexer.GetDatabase(0).HashGet("productHash", "ProductSold");
                 if (string.IsNullOrEmpty(ProductSold))
                 {
@@ -159,6 +162,7 @@ namespace LKN.EBusiness.Controllers
                 // 1、增加销量
                 _connectionMultiplexer.GetDatabase(0).HashIncrement("productHash", "ProductSold");
                 return product;
+                */
             }
             #endregion
 
