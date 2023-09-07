@@ -99,15 +99,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservices", "microservi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "websilte", "websilte", "{09C50269-E3AC-4D1D-8F09-90C98DC50D00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.EBusiness", "mongodb\website\LKN.EBusiness\LKN.EBusiness.csproj", "{69683D9A-3660-4978-86E0-FC62A4597A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.EBusiness", "mongodb\website\LKN.EBusiness\LKN.EBusiness.csproj", "{69683D9A-3660-4978-86E0-FC62A4597A52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.User.Services", "mongodb\microservices\LKN.User.Services\LKN.User.Services.csproj", "{778AB9DC-D2F5-4518-951A-7C08E76139DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.User.Services", "mongodb\microservices\LKN.User.Services\LKN.User.Services.csproj", "{778AB9DC-D2F5-4518-951A-7C08E76139DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.Product.Services", "mongodb\microservices\LKN.Product.Services\LKN.Product.Services.csproj", "{96200B75-2133-4740-97C9-EBB645DF7247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.Product.Services", "mongodb\microservices\LKN.Product.Services\LKN.Product.Services.csproj", "{96200B75-2133-4740-97C9-EBB645DF7247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.Order.Services", "mongodb\microservices\LKN.Order.Services\LKN.Order.Services.csproj", "{EDB2AF2D-410B-4EC3-89D9-350318C88410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.Order.Services", "mongodb\microservices\LKN.Order.Services\LKN.Order.Services.csproj", "{EDB2AF2D-410B-4EC3-89D9-350318C88410}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.Pay.Services", "mongodb\microservices\LKN.Pay.Services\LKN.Pay.Services.csproj", "{BA853FEB-AEF1-4EDF-A63E-F2003EB2C7C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.Pay.Services", "mongodb\microservices\LKN.Pay.Services\LKN.Pay.Services.csproj", "{BA853FEB-AEF1-4EDF-A63E-F2003EB2C7C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "elasticsearch", "elasticsearch", "{F47D3C66-E02E-4CD5-AB11-E5B9F7B0B41D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservice", "microservice", "{F34A0807-5DD3-4B98-826F-79C7069D87BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "webise", "webise", "{0735E2DE-D757-424A-8399-F34395616DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.EBusines.Service", "elasticsearch\website\LKN.EBusines.Service\LKN.EBusines.Service.csproj", "{E25FFC18-6C79-481D-B48E-4560B5882CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.UserService", "elasticsearch\microservice\LKN.UserService\LKN.UserService.csproj", "{0AD321DA-3B0E-4C32-BA31-8E0AC2C1E499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.OrderService", "elasticsearch\microservice\LKN.OrderService\LKN.OrderService.csproj", "{370EE273-FDA2-461E-9BB4-B63E32FDEA13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.PaymentService", "LKN.PaymentService\LKN.PaymentService.csproj", "{98221102-ABEF-4483-8944-92F8FAB60281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.ProductService", "elasticsearch\microservice\LKN.ProductService\LKN.ProductService.csproj", "{7C02E7C0-DAEA-4CA7-AC48-1A607E81B208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.SearchService", "elasticsearch\microservice\LKN.SearchService\LKN.SearchService.csproj", "{F237A88B-E4DA-447C-9B80-AAF3215BF899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -259,6 +277,30 @@ Global
 		{BA853FEB-AEF1-4EDF-A63E-F2003EB2C7C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA853FEB-AEF1-4EDF-A63E-F2003EB2C7C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA853FEB-AEF1-4EDF-A63E-F2003EB2C7C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E25FFC18-6C79-481D-B48E-4560B5882CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25FFC18-6C79-481D-B48E-4560B5882CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25FFC18-6C79-481D-B48E-4560B5882CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25FFC18-6C79-481D-B48E-4560B5882CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AD321DA-3B0E-4C32-BA31-8E0AC2C1E499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD321DA-3B0E-4C32-BA31-8E0AC2C1E499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD321DA-3B0E-4C32-BA31-8E0AC2C1E499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD321DA-3B0E-4C32-BA31-8E0AC2C1E499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{370EE273-FDA2-461E-9BB4-B63E32FDEA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{370EE273-FDA2-461E-9BB4-B63E32FDEA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{370EE273-FDA2-461E-9BB4-B63E32FDEA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{370EE273-FDA2-461E-9BB4-B63E32FDEA13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98221102-ABEF-4483-8944-92F8FAB60281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98221102-ABEF-4483-8944-92F8FAB60281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98221102-ABEF-4483-8944-92F8FAB60281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98221102-ABEF-4483-8944-92F8FAB60281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C02E7C0-DAEA-4CA7-AC48-1A607E81B208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C02E7C0-DAEA-4CA7-AC48-1A607E81B208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C02E7C0-DAEA-4CA7-AC48-1A607E81B208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C02E7C0-DAEA-4CA7-AC48-1A607E81B208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F237A88B-E4DA-447C-9B80-AAF3215BF899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F237A88B-E4DA-447C-9B80-AAF3215BF899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F237A88B-E4DA-447C-9B80-AAF3215BF899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F237A88B-E4DA-447C-9B80-AAF3215BF899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -310,6 +352,14 @@ Global
 		{96200B75-2133-4740-97C9-EBB645DF7247} = {9AC07368-6DB7-4A58-A3BF-0BEBE8C85F46}
 		{EDB2AF2D-410B-4EC3-89D9-350318C88410} = {9AC07368-6DB7-4A58-A3BF-0BEBE8C85F46}
 		{BA853FEB-AEF1-4EDF-A63E-F2003EB2C7C1} = {9AC07368-6DB7-4A58-A3BF-0BEBE8C85F46}
+		{F34A0807-5DD3-4B98-826F-79C7069D87BB} = {F47D3C66-E02E-4CD5-AB11-E5B9F7B0B41D}
+		{0735E2DE-D757-424A-8399-F34395616DB9} = {F47D3C66-E02E-4CD5-AB11-E5B9F7B0B41D}
+		{E25FFC18-6C79-481D-B48E-4560B5882CB6} = {0735E2DE-D757-424A-8399-F34395616DB9}
+		{0AD321DA-3B0E-4C32-BA31-8E0AC2C1E499} = {F34A0807-5DD3-4B98-826F-79C7069D87BB}
+		{370EE273-FDA2-461E-9BB4-B63E32FDEA13} = {F34A0807-5DD3-4B98-826F-79C7069D87BB}
+		{98221102-ABEF-4483-8944-92F8FAB60281} = {F34A0807-5DD3-4B98-826F-79C7069D87BB}
+		{7C02E7C0-DAEA-4CA7-AC48-1A607E81B208} = {F34A0807-5DD3-4B98-826F-79C7069D87BB}
+		{F237A88B-E4DA-447C-9B80-AAF3215BF899} = {F34A0807-5DD3-4B98-826F-79C7069D87BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
