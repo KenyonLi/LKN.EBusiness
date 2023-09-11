@@ -24,30 +24,30 @@ namespace LKN.EBusines.Service.Services
              // 3、获取商品表(集合)
              _products = database.GetCollection<Product>("Product");*/
             #region 1、单实例连接
-            {
-                var node = new Uri("http://localhost:9200");
-                // var defaultIndex = "products";
-
-                var settings = new ConnectionSettings(node);
-                //.DefaultIndex(defaultIndex);
-
-                elasticClient = new ElasticClient(settings);
-            }
-            #endregion
-
-            #region 2、集群连接
             //{
-            //    var nodes = new Uri[]
-            //    {
-            //        new Uri("http://localhost:9201"),
-            //        new Uri("http://localhost:9202"),
-            //        new Uri("http://localhost:9203"),
-            //    };
-            //    var pool = new StaticConnectionPool(nodes);
-            //    var settings = new ConnectionSettings(pool);
+            //    var node = new Uri("http://localhost:9200");
+            //    // var defaultIndex = "products";
+
+            //    var settings = new ConnectionSettings(node);
+            //    //.DefaultIndex(defaultIndex);
 
             //    elasticClient = new ElasticClient(settings);
             //}
+            #endregion
+
+            #region 2、集群连接
+            {
+                var nodes = new Uri[]
+                {
+                    new Uri("http://localhost:9201"),
+                    new Uri("http://localhost:9202"),
+                    new Uri("http://localhost:9203"),
+                };
+                var pool = new StaticConnectionPool(nodes);
+                var settings = new ConnectionSettings(pool);
+
+                elasticClient = new ElasticClient(settings);
+            }
             #endregion
 
         }
