@@ -25,36 +25,36 @@ namespace LKN.EBusines.Service.Services
              _products = database.GetCollection<Product>("Product");*/
             #region 1、单实例连接
             {
-                /* var node = new Uri("http://localhost:9200");
-                 // var defaultIndex = "products";
+                var node = new Uri("http://localhost:9200");
+                // var defaultIndex = "products";
 
-                 var settings = new ConnectionSettings(node);
-                 //.DefaultIndex(defaultIndex);
+                var settings = new ConnectionSettings(node);
+                //.DefaultIndex(defaultIndex);
 
-                 elasticClient = new ElasticClient(settings);*/
+                elasticClient = new ElasticClient(settings);
             }
             #endregion
 
             #region 2、集群连接
-            {
-                var nodes = new Uri[]
-                {
-                    new Uri("http://localhost:9201"),
-                    new Uri("http://localhost:9202"),
-                    new Uri("http://localhost:9203"),
-                };
-                var pool = new StaticConnectionPool(nodes);
-                var settings = new ConnectionSettings(pool);
+            //{
+            //    var nodes = new Uri[]
+            //    {
+            //        new Uri("http://localhost:9201"),
+            //        new Uri("http://localhost:9202"),
+            //        new Uri("http://localhost:9203"),
+            //    };
+            //    var pool = new StaticConnectionPool(nodes);
+            //    var settings = new ConnectionSettings(pool);
 
-                elasticClient = new ElasticClient(settings);
-            }
+            //    elasticClient = new ElasticClient(settings);
+            //}
             #endregion
 
         }
 
         public void Create(Product Product)
         {
-            elasticClient.Index(Product, idx => idx.Index("products_cluster")); // 创建数据库
+            elasticClient.Index(Product, idx => idx.Index("products")); // 创建数据库
         }
 
         public void CreateList(List<Product> Products)
@@ -176,15 +176,22 @@ namespace LKN.EBusines.Service.Services
         {
             #region 1、聚合查询(平均值)
             {
+                //var ducmentsss = elasticClient.Search<Product>(s => s
+                //         .Index("products")
+                //         .Query(q => q.Match(mq => mq.Field(f => f.ProductTitle).Query(productDto.ProductTitle)))
+                //         .Aggregations(a => a.Average("ProductPrice_Average", aa => aa.Field(f => f.ProductPrice)))
+                //         .Aggregations(a => a.Min("ProductPrice_Min", aa => aa.Field(f => f.ProductPrice)))
+                //         .Aggregations(a => a.Max("ProductPrice_Max", aa => aa.Field(f => f.ProductPrice)))
+                //         .Aggregations(a => a.Sum("ProductPrice_Sum", aa => aa.Field(f => f.ProductPrice)))
+                //       ).Aggregations.Min("ProductPrice_Max");
+
+                //return ducmentsss;
+
                 var ducmentsss = elasticClient.Search<Product>(s => s
                          .Index("products")
                          .Query(q => q.Match(mq => mq.Field(f => f.ProductTitle).Query(productDto.ProductTitle)))
                          .Aggregations(a => a.Average("ProductPrice_Average", aa => aa.Field(f => f.ProductPrice)))
-                         .Aggregations(a => a.Min("ProductPrice_Min", aa => aa.Field(f => f.ProductPrice)))
-                         .Aggregations(a => a.Max("ProductPrice_Max", aa => aa.Field(f => f.ProductPrice)))
-                         .Aggregations(a => a.Sum("ProductPrice_Sum", aa => aa.Field(f => f.ProductPrice)))
-                       ).Aggregations.Min("ProductPrice_Max");
-
+                       ).Aggregations.Average("ProductPrice_Average");
                 return ducmentsss;
             }
             #endregion
