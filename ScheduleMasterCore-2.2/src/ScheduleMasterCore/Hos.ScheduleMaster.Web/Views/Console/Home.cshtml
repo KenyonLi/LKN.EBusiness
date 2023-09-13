@@ -1,0 +1,330 @@
+﻿@using Hos.ScheduleMaster.Core.Dto;
+@using Hos.ScheduleMaster.Core.Models;
+@using Hos.ScheduleMaster.Core.Common;
+@{
+    ViewBag.Title = "Home";
+}
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="well bordered-left bordered-themeprimary">
+                <p>
+                    <i class="fa fa-star yellow margin-right-5"></i>
+                    ScheduleMaster是一个开源的分布式任务调度系统，它基于.Net Core 3.1平台构建，支持跨平台多节点部署运行。
+                </p>
+                <p>
+                    <i class="fa fa-smile-o yellow margin-right-5"></i>
+                    主要特性包含：简易的Web UI操作、任务动态管理、高可用支持、自定义参数、邮件告警、任务依赖、任务隔离（热插拔）、HTTP任务、延时任务、全链路日志、用户访问控制、开放API（支持业务集成）、调度报表等。
+                </p>
+                <p>
+                    <i class="fa fa-code yellow margin-right-5"></i>
+                    项目地址：<a href="https://github.com/hey-hoho/ScheduleMasterCore" target="_blank">https://github.com/hey-hoho/ScheduleMasterCore</a>
+                </p>
+                @* <p><strong>Note:</strong> balabalabala ing......</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="databox radius-bordered databox-shadowed databox-graded">
+                        <div class="databox-left bg-orange">
+                            <div class="databox-piechart">
+                                <div data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="100" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;"><span class="white font-90">100%</span></div>
+                            </div>
+                        </div>
+                        <div class="databox-right">
+                            <span class="databox-number themesecondary" id="total_num"></span>
+                            <div class="databox-text darkgray">总任务数</div>
+                            <div class="databox-stat themesecondary radius-bordered">
+                                <i class="stat-icon icon-lg fa fa-tasks"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="databox radius-bordered databox-shadowed databox-graded">
+                        <div class="databox-left bg-azure">
+                            <div class="databox-piechart">
+                                <div id="running_num_pie" data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="#7fe2fa" style="width: 47px; height: 47px; line-height: 47px;"><span class="white font-90"></span></div>
+                            </div>
+                        </div>
+                        <div class="databox-right">
+                            <span class="databox-number azure" id="running_num"></span>
+                            <div class="databox-text darkgray">运行中任务数</div>
+                            <div class="databox-state bg-azure">
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="databox radius-bordered databox-shadowed databox-graded">
+                        <div class="databox-left bg-themeprimary">
+                            <div class="databox-piechart">
+                                <div id="users-pie" data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="100" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;"><span class="white font-90">100%</span></div>
+                            </div>
+                        </div>
+                        <div class="databox-right">
+                            <span class="databox-number themeprimary" id="user_num"></span>
+                            <div class="databox-text darkgray">总用户数</div>
+                            <div class="databox-state bg-themeprimary">
+                                <i class="fa fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="databox databox-xlg databox-vertical databox-inverted bg-white databox-shadowed">
+                        <div class="databox-top">
+                            <div class="databox-piechart">
+                                <div id="success_num_pie" data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="#2dc3e8" data-linecap="butt" data-percent="" data-animate="500" data-linewidth="8" data-size="125" data-trackcolor="#eee" style="width: 125px; height: 125px; line-height: 125px;">
+                                    <span class="font-200"><i class="fa fa-smile-o azure"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="databox-bottom no-padding text-align-center">
+                            <span class="databox-number lightcarbon no-margin" id="success_num"></span>
+                            <span class="databox-text lightcarbon no-margin">累计运行成功次数</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="databox databox-xlg databox-vertical databox-inverted bg-white databox-shadowed">
+                        <div class="databox-top">
+                            <div class="databox-piechart">
+                                <div id="failed_num_pie" data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="#e46f61" data-linecap="butt" data-percent="" data-animate="500" data-linewidth="8" data-size="125" data-trackcolor="#eee" style="width: 125px; height: 125px; line-height: 125px;">
+                                    <span class="font-200"><i class="fa fa-frown-o lightred"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="databox-bottom no-padding text-align-center">
+                            <span class="databox-number lightcarbon no-margin" id="failed_num"></span>
+                            <span class="databox-text lightcarbon no-margin">累计运行失败次数</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="databox databox-xlg databox-vertical databox-inverted bg-white databox-shadowed">
+                        <div class="databox-top">
+                            <div class="databox-piechart">
+                                <div id="worker_running_num_pie" data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="themethirdcolor" data-linecap="butt" data-percent="" data-animate="500" data-linewidth="8" data-size="125" data-trackcolor="#eee" style="width: 125px; height: 125px; line-height: 125px;">
+                                    <span class="font-200"><i class="fa fa-retweet themeprimary"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="databox-bottom no-padding text-align-center">
+                            <span class="databox-number lightcarbon no-margin" id="worker_running_num"></span>
+                            <span class="databox-text lightcarbon no-margin">工作节点数</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="databox databox-xlg databox-vertical databox-inverted  bg-white databox-shadowed">
+                        <div class="databox-top">
+                            <div class="databox-piechart">
+                                <div id="worker_ready_num_pie" data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="themethirdcolor" data-linecap="butt" data-percent="" data-animate="500" data-linewidth="8" data-size="125" data-trackcolor="#eee" style="width: 125px; height: 125px; line-height: 125px;">
+                                    <span class="white font-200"><i class="fa fa-coffee green"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="databox-bottom no-padding text-align-center">
+                            <span class="databox-number lightcarbon no-margin" id="worker_ready_num"></span>
+                            <span class="databox-text lightcarbon no-margin">空闲节点数</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="databox databox-xxlg radius-bordered databox-shadowed databox-vertical margin-5">
+                        <div class="databox-top bg-white">
+                            <span class="databox-header green">近10天运行成功</span>
+                        </div>
+                        <div class="databox-bottom bg-white no-padding">
+                            <div class="row">
+                                <div class="col-lg-12 chart-container">
+                                    <div id="dashboard-chart-suc" class="chart chart-lg no-margin"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="databox databox-xxlg radius-bordered databox-shadowed databox-vertical margin-5">
+                        <div class="databox-top bg-white">
+                            <span class="databox-header orange">近10天运行失败</span>
+                        </div>
+                        <div class="databox-bottom bg-white no-padding">
+                            <div class="row">
+                                <div class="col-lg-12 chart-container">
+                                    <div id="dashboard-chart-fal" class="chart chart-lg no-margin"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="orders-container">
+                <div class="orders-header">
+                    <h6>我负责的任务</h6>
+                </div>
+                <ul class="orders-list">
+                    @{
+                        var mySchedule = ViewBag.MySchedule as List<ScheduleInfo>;
+                        if (mySchedule != null && mySchedule.Any())
+                        {
+                            foreach (var item in mySchedule)
+                            {
+                                <li class="order-item">
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
+                                            <div class="item-booker">@item.Title</div>
+                                            <div class="item-time">
+                                                <i class="fa fa-clock-o"></i>
+                                                <span>@item.LastRunTime</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 item-right">
+                                            <div class="item-price">
+                                                <span class="price">@EnumHelper.GetEnumDescription((ScheduleStatus)item.Status)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="item-more" asp-controller="Schedule" asp-action="TraceLog" asp-route-sid="@item.Id"> <i></i> </a>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+                <div class="orders-footer">
+                    <a class="show-all" href="@Url.Action("MySchedule")"><i class="fa fa-angle-down"></i> 查看全部</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/assets/js/charts/easypiechart/jquery.easypiechart.js"></script>
+    <script src="~/assets/js/charts/easypiechart/easypiechart-init.js"></script>
+    <!--Flot Charts Needed Scripts-->
+    <script src="~/assets/js/charts/flot/jquery.flot.js"></script>
+    <script src="~/assets/js/charts/flot/jquery.flot.tooltip.js"></script>
+    <script src="~/assets/js/charts/flot/jquery.flot.time.js"></script>
+
+    <script type="text/javascript">
+        hos.ui.util.breadCrumb("仪表盘");
+        $(function () {
+            hos.ui.util.getJson("@Url.Action("GetHomeSummary","Console")", null, function (result) {
+                $("#total_num").text(result.Data.task_total);
+                $("#running_num").text(result.Data.task_running);
+                var running_p = result.Data.task_total == 0 ? 0 : Math.round(result.Data.task_running * 100 / result.Data.task_total).toFixed(0);
+                $("#running_num_pie").attr("data-percent", running_p).find("span").text(running_p + "%");
+                $("#user_num").text(result.Data.user_total);
+
+                $("#success_num").text(result.Data.trace_success);
+                var success_p = Math.round(result.Data.trace_success * 100 / result.Data.trace_total).toFixed(0);
+                $("#success_num_pie").attr("data-percent", success_p).attr("title", success_p + "%");
+
+                $("#failed_num").text(result.Data.trace_failed);
+                var failed_p = Math.round(result.Data.trace_failed * 100 / result.Data.trace_total).toFixed(0);
+                $("#failed_num_pie").attr("data-percent", failed_p).attr("title", failed_p + "%");
+
+                $("#worker_running_num").text(result.Data.worker_running);
+                var w_running_p = Math.round(result.Data.worker_running * 100 / result.Data.worker_total).toFixed(0);
+                $("#worker_running_num_pie").attr("data-percent", w_running_p).attr("title", w_running_p + "%");
+
+                $("#worker_ready_num").text(result.Data.worker_ready);
+                var w_ready_p = Math.round(result.Data.worker_ready * 100 / result.Data.worker_total).toFixed(0);
+                $("#worker_ready_num_pie").attr("data-percent", w_ready_p).attr("title", w_ready_p + "%");
+
+                InitiateEasyPieChart.init();
+
+                var data1 = [{
+                    color: "green",
+                    label: "成功次数",
+                    data: [],
+                    lines: {
+                        show: true,
+                        fill: true,
+                        lineWidth: .1,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0
+                            }, {
+                                opacity: 0.4
+                            }]
+                        }
+                    },
+                    points: {
+                        show: false
+                    },
+                    shadowSize: 0
+                }];
+                for (var i = 0; i < result.Data.weekly_success.length; i++) {
+                    data1[0].data.push([result.Data.weekly_success[i].Key, result.Data.weekly_success[i].Value]);
+                }
+                var data2 = [{
+                    color: "red",
+                    label: "失败次数",
+                    data: [],
+                    lines: {
+                        show: true,
+                        fill: true,
+                        lineWidth: .1,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0
+                            }, {
+                                opacity: 0.4
+                            }]
+                        }
+                    },
+                    points: {
+                        show: false
+                    },
+                    shadowSize: 0
+                }];
+                for (var i = 0; i < result.Data.weekly_failed.length; i++) {
+                    data2[0].data.push([result.Data.weekly_failed[i].Key, result.Data.weekly_failed[i].Value]);
+                }
+                var options = {
+                    legend: {
+                        show: false
+                    },
+                    xaxis: {
+                        mode: "time",
+                        tickLength: 5,
+                        color: '#f3f3f3'
+                    },
+                    yaxis: {
+                        min: 0,
+                        color: '#f3f3f3'
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: false,
+                        borderWidth: 0,
+                        aboveData: false,
+                        color: '#fbfbfb'
+                    },
+                    tooltip: true,
+                    tooltipOpts: {
+                        defaultTheme: false,
+                        dateFormat: "%Y-%m-%d",
+                        content: "<b>%x </b> , <b>%s</b> : <span>%y</span>",
+                    }
+                };
+                var placeholder = $("#dashboard-chart-suc");
+                var plot = $.plot(placeholder, data1, options);
+                $.plot($("#dashboard-chart-fal"), data2, options);
+            });
+        });
+    </script>
+}

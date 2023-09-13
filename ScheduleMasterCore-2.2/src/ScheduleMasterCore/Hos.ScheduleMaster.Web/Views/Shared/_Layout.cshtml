@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="Dashboard" />
+    <link rel="shortcut icon" href="~/images/icon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="~/assets/css/beyond.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/typicons.min.css" rel="stylesheet" />
+    <link href="~/assets/css/toastr.css" rel="stylesheet" />
+    <link id="skin-link" href="/assets/css/skins/deepblue.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="~/assets/js/skins.min.js"></script>
+    <style type="text/css">
+        body {
+            font-family: 'microsoft yahei';
+        }
+
+        .form-control-error {
+            display: block;
+            color: #e46f61;
+            margin-top: 5px;
+        }
+
+            .form-control-error:before {
+                content: '\f056';
+                font-family: 'FontAwesome';
+            }
+
+        .bootstrap-table .bs-bars {
+            width: 100%;
+        }
+    </style>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+
+    <div class="main-container">
+        @RenderBody()
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="~/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="~/assets/js/beyond.min.js"></script>
+    <!--Toast Scripts-->
+    <script src="~/assets/js/toastr/toastr.js"></script>
+    <!--common Scripts-->
+    <script src="~/js/hos.ui.ext.js" asp-append-version="true"></script>
+    <script src="~/js/hos.ui.util.js" asp-append-version="true"></script>
+    <script src="~/js/hos.ui.ctrl.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
