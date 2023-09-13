@@ -135,7 +135,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "websilte", "websilte", "{01
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.EBusiness.Index", "minio\webstite\LKN.EBusiness.Index\LKN.EBusiness.Index.csproj", "{3764449F-401D-41B6-9325-AAC0A73EFC25}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.EBusiness", "minio\microservices\LKN.FileService\LKN.EBusiness.csproj", "{A1E18C22-0519-4917-B8FF-0408285EE480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.FileService", "minio\microservices\LKN.FileService\LKN.FileService.csproj", "{A1E18C22-0519-4917-B8FF-0408285EE480}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.OrderService", "minio\microservices\LKN.OrderService\LKN.OrderService.csproj", "{69DDC8E5-878F-455A-A36E-29099422A58A}"
 EndProject
@@ -143,7 +143,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.ProductService", "minio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.ShopcarService", "minio\microservices\LKN.ShopcarService\LKN.ShopcarService.csproj", "{2A92D83D-427D-4DCF-B9E7-3DA721D282C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LKN.EBusiness", "minio\webstite\LKN.EBusiness\LKN.EBusiness.csproj", "{4B6E80A4-C2CE-4410-B235-179EE555B66D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKN.EBusiness", "minio\webstite\LKN.EBusiness\LKN.EBusiness.csproj", "{4B6E80A4-C2CE-4410-B235-179EE555B66D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

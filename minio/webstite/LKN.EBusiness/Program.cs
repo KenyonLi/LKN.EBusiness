@@ -1,4 +1,4 @@
-using Minio;
+using Minio.Helper;
 internal class Program
 {
     private static void Main(string[] args)
