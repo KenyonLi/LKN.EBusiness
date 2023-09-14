@@ -10,7 +10,7 @@ namespace Hos.ScheduleMaster.Core.Migrations
 {
     [DbContext(typeof(SmDbContext))]
     [Migration("20200622035045_tracessummary")]
-    partial class tracessummary
+    partial class Tracessummary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

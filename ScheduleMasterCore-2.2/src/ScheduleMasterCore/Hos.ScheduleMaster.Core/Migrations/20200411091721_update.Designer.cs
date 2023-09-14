@@ -10,7 +10,7 @@ namespace Hos.ScheduleMaster.Core.Migrations
 {
     [DbContext(typeof(SmDbContext))]
     [Migration("20200411091721_update")]
-    partial class update
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

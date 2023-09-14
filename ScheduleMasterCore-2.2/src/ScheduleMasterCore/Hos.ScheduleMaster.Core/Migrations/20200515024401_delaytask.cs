@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hos.ScheduleMaster.Core.Migrations
 {
-    public partial class delaytask : Migration
+    public partial class Delaytask : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

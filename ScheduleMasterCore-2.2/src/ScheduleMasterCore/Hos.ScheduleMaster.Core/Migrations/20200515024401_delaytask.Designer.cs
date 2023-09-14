@@ -10,7 +10,7 @@ namespace Hos.ScheduleMaster.Core.Migrations
 {
     [DbContext(typeof(SmDbContext))]
     [Migration("20200515024401_delaytask")]
-    partial class delaytask
+    partial class Delaytask
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

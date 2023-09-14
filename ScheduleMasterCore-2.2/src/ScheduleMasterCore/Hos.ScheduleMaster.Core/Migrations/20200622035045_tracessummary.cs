@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hos.ScheduleMaster.Core.Migrations
 {
-    public partial class tracessummary : Migration
+    public partial class Tracessummary : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

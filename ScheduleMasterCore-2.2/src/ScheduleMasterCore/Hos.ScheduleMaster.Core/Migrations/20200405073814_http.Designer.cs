@@ -10,7 +10,7 @@ namespace Hos.ScheduleMaster.Core.Migrations
 {
     [DbContext(typeof(SmDbContext))]
     [Migration("20200405073814_http")]
-    partial class http
+    partial class Http
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -606,7 +606,8 @@ namespace Hos.ScheduleMaster.Core.Services
         /// <returns></returns>
         public ListPager<ScheduleTraceEntity> QueryTracePager(ListPager<ScheduleTraceEntity> pager)
         {
-            _repositoryFactory.ScheduleTraces.WherePager(pager, m => m.TraceId != null, m => m.StartTime, false, false);
+           // _repositoryFactory.ScheduleTraces.WherePager(pager, m => m.TraceId !=null , m => m.StartTime, false, false);
+            _repositoryFactory.ScheduleTraces.WherePager(pager, m => true, m => m.StartTime, false, false);
             pager.Total = 150;
             return pager;
         }

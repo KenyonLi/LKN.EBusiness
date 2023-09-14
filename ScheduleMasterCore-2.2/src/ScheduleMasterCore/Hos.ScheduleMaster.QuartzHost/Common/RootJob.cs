@@ -63,16 +63,17 @@ namespace Hos.ScheduleMaster.QuartzHost.Common
                 }
                 try
                 {
-                    await _tracer.Begin(traceId, context.JobDetail.Key.Name);
+                        await _tracer.Begin(traceId, context.JobDetail.Key.Name);
+                
+                        //执行
+                        OnExecuting(tctx);
 
-                    //执行
-                    OnExecuting(tctx);
+                        double elapsed = await _tracer.Complete(ScheduleRunResult.Success);
 
-                    double elapsed = await _tracer.Complete(ScheduleRunResult.Success);
-
-                    LogHelper.Info($"任务[{instance.Main.Title}]运行成功！用时{elapsed.ToString()}ms", _sid, traceId);
-                    //保存运行结果用于子任务触发
-                    context.Result = tctx.Result;
+                        LogHelper.Info($"任务[{instance.Main.Title}]运行成功！用时{elapsed.ToString()}ms", _sid, traceId);
+                        //保存运行结果用于子任务触发
+                        context.Result = tctx.Result;
+                  
                 }
                 catch (RunConflictException conflict)
                 {

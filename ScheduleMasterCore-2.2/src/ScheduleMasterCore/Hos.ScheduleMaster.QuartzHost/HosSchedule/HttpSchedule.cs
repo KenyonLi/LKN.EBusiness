@@ -122,7 +122,8 @@ namespace Hos.ScheduleMaster.QuartzHost.HosSchedule
                 var response = await httpClient.SendAsync(httpRequest, CancellationToken);
                 if (response.IsSuccessStatusCode)
                 {
-                    context.WriteLog($"请求结束，响应码：{response.StatusCode.GetHashCode().ToString()}，响应内容：{(response.Content.Headers.GetValues("content-type").Any(x => x.Contains("text/html")) ? "html文档" : await response.Content.ReadAsStringAsync())}");
+                    //bug 修复
+                    context.WriteLog($"请求结束，响应码：{response.StatusCode.GetHashCode().ToString()}，响应内容：{(response.Content.Headers.ContentLength == 0 ? " " : response.Content.Headers.GetValues("content-type").Any(x => x.Contains("text/html")) ? "html文档" : await response.Content.ReadAsStringAsync())}");
                 }
                 response.Dispose();
             }

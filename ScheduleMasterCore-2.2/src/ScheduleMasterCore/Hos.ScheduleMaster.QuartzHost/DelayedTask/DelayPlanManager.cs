@@ -154,7 +154,7 @@ namespace Hos.ScheduleMaster.QuartzHost.DelayedTask
                     var response = await httpClient.PostAsync(plan.NotifyUrl, reqContent);
                     var content = await response.Content.ReadAsStringAsync();
 
-                    LogHelper.Info($"请求结束，响应码：{response.StatusCode.GetHashCode().ToString()}，响应内容：{(response.Content.Headers.GetValues("Content-Type").Any(x => x.Contains("text/html")) ? "html文档" : content)}", sid, traceId);
+                    LogHelper.Info($"请求结束，响应码：{response.StatusCode.GetHashCode().ToString()}，响应内容：{(response.Content.Headers.ContentLength == 0 ? " " : response.Content.Headers.GetValues("Content-Type").Any(x => x.Contains("text/html")) ? "html文档" : content)}", sid, traceId);
 
                     if (response.IsSuccessStatusCode && content.Contains("success"))
                     {

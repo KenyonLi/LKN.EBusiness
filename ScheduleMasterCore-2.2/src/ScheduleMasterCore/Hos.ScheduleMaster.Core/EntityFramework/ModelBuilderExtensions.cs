@@ -19,7 +19,7 @@ namespace Hos.ScheduleMaster.Core.EntityFramework
         /// <returns></returns>
         public static ModelBuilder SeedData(this ModelBuilder builder)
         {
-            string remark = "seed by efcore auto migration";
+            //string remark = "seed by efcore auto migration";
 
             builder.Entity<SystemUserEntity>().HasData
                 (
@@ -164,7 +164,7 @@ namespace Hos.ScheduleMaster.Core.EntityFramework
                     builder.UseSqlServer(conn);
                     break;
                 case DbProvider.MySQL:
-                    builder.UseMySql(conn,ServerVersion.Create(Version.Parse("8.0.23"),Pomelo.EntityFrameworkCore.MySql.Infrastructure.ServerType.MySql));
+                    builder.UseMySql(conn,MySqlServerVersion.LatestSupportedServerVersion);
                     break;
                 case DbProvider.PostgreSQL:
                     builder.UseNpgsql(conn);
@@ -222,15 +222,15 @@ namespace Hos.ScheduleMaster.Core.EntityFramework
         /// <returns></returns>
         public static ModelBuilder CreateIndexes(this ModelBuilder builder)
         {
-            builder.Entity<ScheduleTraceEntity>().HasIndex(p => p.ScheduleId).HasName("scheduletraces_scheduleid_index");
-            builder.Entity<ScheduleTraceEntity>().HasIndex(p => p.StartTime).HasName("scheduletraces_starttime_index");
-            builder.Entity<ScheduleTraceEntity>().HasIndex(p => p.Result).HasName("scheduletraces_result_index");
+            builder.Entity<ScheduleTraceEntity>().HasIndex(p => p.ScheduleId).HasDatabaseName("scheduletraces_scheduleid_index");
+            builder.Entity<ScheduleTraceEntity>().HasIndex(p => p.StartTime).HasDatabaseName("scheduletraces_starttime_index");
+            builder.Entity<ScheduleTraceEntity>().HasIndex(p => p.Result).HasDatabaseName("scheduletraces_result_index");
 
-            builder.Entity<SystemLogEntity>().HasIndex(p => p.TraceId).HasName("systemlogs_traceid_index");
-            builder.Entity<SystemLogEntity>().HasIndex(p => p.CreateTime).HasName("systemlogs_createtime_index");
+            builder.Entity<SystemLogEntity>().HasIndex(p => p.TraceId).HasDatabaseName("systemlogs_traceid_index");
+            builder.Entity<SystemLogEntity>().HasIndex(p => p.CreateTime).HasDatabaseName("systemlogs_createtime_index");
 
-            builder.Entity<ScheduleDelayedEntity>().HasIndex(p => p.CreateTime).HasName("scheduledelayeds_createtime_index");
-            builder.Entity<ScheduleDelayedEntity>().HasIndex(p => p.ContentKey).HasName("scheduledelayeds_contentkey_index");
+            builder.Entity<ScheduleDelayedEntity>().HasIndex(p => p.CreateTime).HasDatabaseName("scheduledelayeds_createtime_index");
+            builder.Entity<ScheduleDelayedEntity>().HasIndex(p => p.ContentKey).HasDatabaseName("scheduledelayeds_contentkey_index");
 
             return builder;
         }

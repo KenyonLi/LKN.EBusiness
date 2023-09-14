@@ -27,7 +27,7 @@ namespace Hos.ScheduleMaster.QuartzHost.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert([FromForm]Guid sid)
+        public async Task<IActionResult> Insert([FromForm] Guid sid)
         {
             bool success = await DelayPlanManager.InsertById(sid);
             if (success) return Ok();
@@ -36,7 +36,7 @@ namespace Hos.ScheduleMaster.QuartzHost.Controllers
 
 
         [HttpPost]
-        public IActionResult Remove([FromForm]Guid sid)
+        public IActionResult Remove([FromForm] Guid sid)
         {
             bool success = DelayPlanManager.Remove(sid.ToString());
             if (success) return Ok();
@@ -44,7 +44,7 @@ namespace Hos.ScheduleMaster.QuartzHost.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Execute([FromServices]SmDbContext db, [FromServices]IHttpClientFactory clientFactory, [FromForm]Guid sid)
+        public async Task<IActionResult> Execute([FromServices] SmDbContext db, [FromServices] IHttpClientFactory clientFactory, [FromForm] Guid sid)
         {
             var entity = await db.ScheduleDelayeds.FirstOrDefaultAsync(x => x.Id == sid);
             if (entity != null)
@@ -73,7 +73,7 @@ namespace Hos.ScheduleMaster.QuartzHost.Controllers
                     }
                     else
                     {
-                        LogHelper.Warn($"延时任务[{entity.Topic}:{entity.ContentKey}]执行失败。响应码：{response.StatusCode.GetHashCode()}，响应内容：{(response.Content.Headers.GetValues("Content-Type").Any(x => x.Contains("text/html")) ? "html文档" : content)}", sid);
+                        LogHelper.Warn($"延时任务[{entity.Topic}:{entity.ContentKey}]执行失败。响应码：{response.StatusCode.GetHashCode()}，响应内容：{(response.Content.Headers.ContentLength == 0 ? " " : response.Content.Headers.GetValues("Content-Type").Any(x => x.Contains("text/html")) ? "html文档" : content)}", sid);
                     }
                 }
                 catch (Exception ex)

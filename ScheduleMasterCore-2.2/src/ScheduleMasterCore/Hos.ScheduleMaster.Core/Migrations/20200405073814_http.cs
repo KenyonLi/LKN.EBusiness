@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hos.ScheduleMaster.Core.Migrations
 {
-    public partial class http : Migration
+    public partial class Http : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
